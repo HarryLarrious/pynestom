@@ -471,17 +471,20 @@ def _handle_client(peer_sock: socket.socket, peer_addr: str):
     with peer_sock:
         print(f"New peer, {peer_addr}")
         peer = Peer(peer_sock, peer_addr)
-        while True:
-            if peer.state == State.HANDSHAKING:
-                handle_handshake(peer)
-            elif peer.state == State.STATUS:
-                handle_status(peer)
-            elif peer.state == State.LOGIN:
-                handle_login(peer)
-            elif peer.state == State.CONFIGURATION:
-                handle_config(peer)
-            elif peer.state == State.PLAY:
-                handle_play(peer)
+        try:
+            while True:
+                if peer.state == State.HANDSHAKING:
+                    handle_handshake(peer)
+                elif peer.state == State.STATUS:
+                    handle_status(peer)
+                elif peer.state == State.LOGIN:
+                    handle_login(peer)
+                elif peer.state == State.CONFIGURATION:
+                    handle_config(peer)
+                elif peer.state == State.PLAY:
+                    handle_play(peer)
+        except ConnectionError:
+            print(f"Peer {peer_addr} disconnected")
 
 
 def server(host="0.0.0.0", port=25565):
