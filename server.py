@@ -129,7 +129,7 @@ def handle_login(peer: Peer):
             .write(struct.pack("B", 1))
             .write_str("minecraft")
             .write_str("core")
-            .write_str("1.21.8")
+            .write_str(VERSION)
         )
 
         for simple_registry in ["cat", "chicken", "cow", "frog", "pig"]:
