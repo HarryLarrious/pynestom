@@ -3,10 +3,10 @@ import struct
 import threading
 import uuid
 
-from constants import *
-from nbt import *
-from packet.handler import *
-from peer import Packet, Peer, State
+from src.constants import *
+from src.nbt import *
+from src.packet.handler import *
+from src.peer import Packet, Peer, State
 
 # ====================================== CONSTANTS ======================================
 
