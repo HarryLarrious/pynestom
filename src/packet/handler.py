@@ -41,13 +41,30 @@ def handle_status(peer: Peer):
     print("recv", hex(packet_id))
 
     if packet_id == PACKETID_C2S_STATUS_REQUEST:
-        status_json = (
-            '{"version":{"name":"'
-            + VERSION
-            + '","protocol":'
-            + str(PROTOCOL)
-            + '},"description":{"text":"I HATE MC PROTOCOL!!!!!!!"}}'
+        status_json = str(
+            {
+                "version": {
+                    "name": VERSION,
+                    "protocol": PROTOCOL,
+                },
+                "players": {
+                    "max": 20,
+                    "online": 1,
+                    "sample": [
+                        {
+                            "name": "player name",
+                            "id": "01234567-89ab-cdef-0123-456789abcdef",
+                        }
+                    ],
+                },
+                "description": {
+                    "text": "I HATE MC PROTOCOL!!!!!!!",
+                },
+                "favicon": f"data:image/png;base64,<data>",
+                "enforcesSecureChat": False,
+            }
         )
+
         peer.send(Packet(PACKETID_S2C_STATUS_RESPONSE).write_str(status_json))
 
     elif packet_id == PACKETID_C2S_STATUS_PING:
