@@ -2,7 +2,7 @@ import socket
 import struct
 from enum import Enum
 
-from packet import Packet
+from packet.packet import Packet
 
 
 class State(Enum):
