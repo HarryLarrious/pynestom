@@ -93,6 +93,7 @@ def handle_login(peer: Peer):
             .write(peer.uuid)
             .write_str(peer.username)
             .write_varint(0)
+            .write(SESSION_ID)
         )
 
     elif packet_id == PACKETID_C2S_LOGIN_FINISH_ACKNOWLEDGE:

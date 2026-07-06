@@ -3,6 +3,7 @@ import uuid
 VERSION = "26.2"
 PROTOCOL = 776
 NAMESPACE = uuid.UUID("a9cfe996-7fe7-4bd1-aa58-96298f401e62")
+SESSION_ID = uuid.uuid4().bytes  # random session id (probably will change later idk).
 
 PACKETID_C2S_HANDSHAKE_INTENTION = 0x00
 
